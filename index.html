@@ -38,767 +38,433 @@
     <p class="note">請在送出訂單前輸入代號 (例如 666 或 666#)。代號為必填，系統會在送出前自動正規化為數字加 #。</p>
 
     <form id="orderForm" onsubmit="return false;">
-      <!-- SALAD -->
-      <h2>沙拉 Salad</h2>
-
-      <div class="item" data-id="SAL01" data-price="290">
-        <div class="meta">
-          <div class="name">SAL01 凱撒沙拉 – NT$290</div>
-          <div class="desc">帕瑪森起司、香烤麵包丁、培根、蘿美生菜、特製凱撒醬</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$290</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('SAL01', -1)">-</button>
-            <input type="number" id="qty_SAL01" name="qty_SAL01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('SAL01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="SAL02" data-price="290">
-        <div class="meta">
-          <div class="name">SAL02 季節花園沙拉 – NT$290</div>
-          <div class="desc">蕃茄、乳酪、綜合生菜、黑橄欖</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$290</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('SAL02', -1)">-</button>
-            <input type="number" id="qty_SAL02" name="qty_SAL02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('SAL02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="SAL03" data-price="350">
-        <div class="meta">
-          <div class="name">SAL03 地中海農夫沙拉 – NT$350</div>
-          <div class="desc">葡萄、堅果、果乾、綜合生菜</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$350</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('SAL03', -1)">-</button>
-            <input type="number" id="qty_SAL03" name="qty_SAL03" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('SAL03', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="SAL04" data-price="385">
-        <div class="meta">
-          <div class="name">SAL04 燻鮭魚油醋沙拉 – NT$385</div>
-          <div class="desc">燻鮭魚、紫洋蔥、酸豆、黑橄欖、葡萄、小蕃茄、綜合生菜</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$385</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('SAL04', -1)">-</button>
-            <input type="number" id="qty_SAL04" name="qty_SAL04" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('SAL04', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PIZZA -->
-      <h2>羅馬手工披薩 Pizza</h2>
-
-      <div class="item" data-id="PZ01" data-price-large="350" data-price-small="180">
-        <div class="meta">
-          <div class="name">PZ01 瑪格麗特披薩 (奶素)</div>
-          <div class="desc">九層塔、牛番茄、馬茲瑞拉起士、pizza紅醬</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ01" onchange="recalc()">
-            <option value="large">large - NT$350</option>
-            <option value="small">small - NT$180</option>
-          </select>
-          <div class="price" id="price_PZ01">NT$350</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ01', -1)">-</button>
-            <input type="number" id="qty_PZ01" name="qty_PZ01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PZ02" data-price-large="390" data-price-small="200">
-        <div class="meta">
-          <div class="name">PZ02 四騎士披薩 (四種起士)</div>
-          <div class="desc">藍紋乳酪、馬茲瑞拉、煙燻起司、披薩起士、綜合堅果、蜂蜜</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ02" onchange="recalc()">
-            <option value="large">large - NT$390</option>
-            <option value="small">small - NT$200</option>
-          </select>
-          <div class="price" id="price_PZ02">NT$390</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ02', -1)">-</button>
-            <input type="number" id="qty_PZ02" name="qty_PZ02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PZ03" data-price-large="420" data-price-small="220">
-        <div class="meta">
-          <div class="name">PZ03 夏威夷鮮蝦披薩</div>
-          <div class="desc">蝦仁、鳳梨、洋菇、pizza紅醬</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ03" onchange="recalc()">
-            <option value="large">large - NT$420</option>
-            <option value="small">small - NT$220</option>
-          </select>
-          <div class="price" id="price_PZ03">NT$420</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ03', -1)">-</button>
-            <input type="number" id="qty_PZ03" name="qty_PZ03" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ03', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PZ04" data-price-large="420" data-price-small="220">
-        <div class="meta">
-          <div class="name">PZ04 起士鮮蝦披薩</div>
-          <div class="desc">蝦仁、煙燻起士、馬茲瑞拉起士</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ04" onchange="recalc()">
-            <option value="large">large - NT$420</option>
-            <option value="small">small - NT$220</option>
-          </select>
-          <div class="price" id="price_PZ04">NT$420</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ04', -1)">-</button>
-            <input type="number" id="qty_PZ04" name="qty_PZ04" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ04', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PZ05" data-price-large="450" data-price-small="230">
-        <div class="meta">
-          <div class="name">PZ05 雪花牛蕃茄披薩</div>
-          <div class="desc">雪花牛肉片、小蕃茄、馬茲瑞拉起士</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ05" onchange="recalc()">
-            <option value="large">large - NT$450</option>
-            <option value="small">small - NT$230</option>
-          </select>
-          <div class="price" id="price_PZ05">NT$450</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ05', -1)">-</button>
-            <input type="number" id="qty_PZ05" name="qty_PZ05" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ05', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PZ06" data-price-large="450" data-price-small="230">
-        <div class="meta">
-          <div class="name">PZ06 明太子透抽披薩</div>
-          <div class="desc">透抽、蘆筍、柴魚片、小蕃茄、明太子醬</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ06" onchange="recalc()">
-            <option value="large">large - NT$450</option>
-            <option value="small">small - NT$230</option>
-          </select>
-          <div class="price" id="price_PZ06">NT$450</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ06', -1)">-</button>
-            <input type="number" id="qty_PZ06" name="qty_PZ06" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ06', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PZ07" data-price-large="450" data-price-small="230">
-        <div class="meta">
-          <div class="name">PZ07 蕃茄海鮮披薩</div>
-          <div class="desc">透抽、蝦仁、鯷魚、黑橄欖、蕃茄紅醬</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ07" onchange="recalc()">
-            <option value="large">large - NT$450</option>
-            <option value="small">small - NT$230</option>
-          </select>
-          <div class="price" id="price_PZ07">NT$450</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ07', -1)">-</button>
-            <input type="number" id="qty_PZ07" name="qty_PZ07" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ07', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PASTA -->
-      <h2>義大利麵 Pasta</h2>
-
-      <div class="item" data-id="PA01" data-price="290">
-        <div class="meta">
-          <div class="name">PA01 奶油培根斜管麵 – NT$290</div>
-          <div class="desc">培根片、洋菇、法式頂級鮮奶油</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$290</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PA01', -1)">-</button>
-            <input type="number" id="qty_PA01" name="qty_PA01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PA01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PA02" data-price="280">
-        <div class="meta">
-          <div class="name">PA02 經典肉醬斜管麵 – NT$280</div>
-          <div class="desc">牛肉、豬肉、蕃茄肉醬</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$280</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PA02', -1)">-</button>
-            <input type="number" id="qty_PA02" name="qty_PA02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PA02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PA03" data-price="385">
-        <div class="meta">
-          <div class="name">PA03 白酒蛤蜊扁麵 – NT$385</div>
-          <div class="desc">蛤蜊、辣椒、白酒、小農初榨橄欖油</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$385</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PA03', -1)">-</button>
-            <input type="number" id="qty_PA03" name="qty_PA03" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PA03', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- RISOTTO -->
-      <h2>燉飯 Risotto</h2>
-
-      <div class="item" data-id="RI01" data-price="345">
-        <div class="meta">
-          <div class="name">RI01 鳳梨鮮蝦燉飯 – NT$345</div>
-          <div class="desc">鮮蝦、洋菇、鳳梨片</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$345</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('RI01', -1)">-</button>
-            <input type="number" id="qty_RI01" name="qty_RI01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('RI01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="RI02" data-price="395">
-        <div class="meta">
-          <div class="name">RI02 燻鮭魚奶油燉飯 – NT$395</div>
-          <div class="desc">鮮魚、洋菇、法式頂級鮮奶油</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$395</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('RI02', -1)">-</button>
-            <input type="number" id="qty_RI02" name="qty_RI02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('RI02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="RI03" data-price="450">
-        <div class="meta">
-          <div class="name">RI03 野菇蟹肉燉飯 – NT$450</div>
-          <div class="desc">特選蟹腿肉、香菇、洋菇、洋蔥</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$450</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('RI03', -1)">-</button>
-            <input type="number" id="qty_RI03" name="qty_RI03" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('RI03', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- MAIN -->
-      <h2>主菜 Main Course</h2>
-
-      <div class="item" data-id="MC01" data-price="450">
-        <div class="meta">
-          <div class="name">MC01 香料雞腿排 – NT$450</div>
-          <div class="desc">綜合香料、雞腿</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$450</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('MC01', -1)">-</button>
-            <input type="number" id="qty_MC01" name="qty_MC01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('MC01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="MC02" data-price="490">
-        <div class="meta">
-          <div class="name">MC02 美國首選板腱牛排 – NT$490</div>
-          <div class="desc">US Choice Tendon Steak</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$490</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('MC02', -1)">-</button>
-            <input type="number" id="qty_MC02" name="qty_MC02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('MC02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="MC03" data-price="520">
-        <div class="meta">
-          <div class="name">MC03 地中海風什錦海鮮 – NT$520</div>
-          <div class="desc">白蝦、鮮魷、淡菜、蛤蜊、透抽、貝肉</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$520</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('MC03', -1)">-</button>
-            <input type="number" id="qty_MC03" name="qty_MC03" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('MC03', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="MC04" data-price="520">
-        <div class="meta">
-          <div class="name">MC04 義式香煎鱸魚 – NT$520</div>
-          <div class="desc">鱸魚、義式熱配菜</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$520</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('MC04', -1)">-</button>
-            <input type="number" id="qty_MC04" name="qty_MC04" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('MC04', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="MC05" data-price="680">
-        <div class="meta">
-          <div class="name">MC05 招牌辣烤肋排 – NT$680</div>
-          <div class="desc">煙燻辣肋排、熱配菜</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$680</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('MC05', -1)">-</button>
-            <input type="number" id="qty_MC05" name="qty_MC05" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('MC05', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="MC06" data-price="680">
-        <div class="meta">
-          <div class="name">MC06 脆皮豬腳 – NT$680</div>
-          <div class="desc">德國豬腳、德式酸菜</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$680</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('MC06', -1)">-</button>
-            <input type="number" id="qty_MC06" name="qty_MC06" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('MC06', 1)">+</button>
-          </div>
-        </div>
-      </div>
-      <!-- 前菜 / 小點 Appetizers -->
+     <!-- 全部缺少或 PDF 列出的項目（Appetizers / Pasta / Risotto / Main / Desserts / Drinks） -->
+<!-- 前菜 / 小點 Appetizers -->
 <h2>前菜 / 小點 Appetizer</h2>
 
 <div class="item" data-id="AP01" data-price="88">
-  <div class="meta">
-    <div class="name">AP01 脆皮小餐包附鮪魚抹醬 (2顆) – NT$88</div>
-    <div class="desc">Bread with Tuna Paste</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$88</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP01', -1)">-</button>
-      <input type="number" id="qty_AP01" name="qty_AP01" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP01', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP01 脆皮小餐包附鮪魚抹醬 (2顆) – NT$88</div><div class="desc">Bread with Tuna Paste</div></div>
+  <div class="controls"><div class="price">NT$88</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP01', -1)">-</button><input type="number" id="qty_AP01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP01', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP02" data-price="90">
-  <div class="meta">
-    <div class="name">AP02 每日濃湯 – NT$90</div>
-    <div class="desc">Daily Cream Soup</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$90</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP02', -1)">-</button>
-      <input type="number" id="qty_AP02" name="qty_AP02" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP02', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP02 每日濃湯 – NT$90</div><div class="desc">Daily Cream Soup</div></div>
+  <div class="controls"><div class="price">NT$90</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP02', -1)">-</button><input type="number" id="qty_AP02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP02', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP03" data-price="100">
-  <div class="meta">
-    <div class="name">AP03 橄欖蔬菜清湯 (全素) – NT$100</div>
-    <div class="desc">Vegetable and Olive Soup</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$100</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP03', -1)">-</button>
-      <input type="number" id="qty_AP03" name="qty_AP03" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP03', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP03 橄欖蔬菜清湯 (全素) – NT$100</div><div class="desc">Vegetable and Olive Soup</div></div>
+  <div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP03', -1)">-</button><input type="number" id="qty_AP03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP03', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP04" data-price="128">
-  <div class="meta">
-    <div class="name">AP04 黃金薯條 – NT$128</div>
-    <div class="desc">French Fries</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$128</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP04', -1)">-</button>
-      <input type="number" id="qty_AP04" name="qty_AP04" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP04', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP04 黃金薯條 – NT$128</div><div class="desc">French Fries</div></div>
+  <div class="controls"><div class="price">NT$128</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP04', -1)">-</button><input type="number" id="qty_AP04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP04', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP05" data-price="128">
-  <div class="meta">
-    <div class="name">AP05 起士洋蔥圈 – NT$128</div>
-    <div class="desc">Onion Rings</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$128</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP05', -1)">-</button>
-      <input type="number" id="qty_AP05" name="qty_AP05" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP05', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP05 起士洋蔥圈 – NT$128</div><div class="desc">Onion Rings</div></div>
+  <div class="controls"><div class="price">NT$128</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP05', -1)">-</button><input type="number" id="qty_AP05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP05', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP06" data-price="148">
-  <div class="meta">
-    <div class="name">AP06 德國香腸 – NT$148</div>
-    <div class="desc">Pan Fried Sausage</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$148</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP06', -1)">-</button>
-      <input type="number" id="qty_AP06" name="qty_AP06" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP06', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP06 德國香腸 – NT$148</div><div class="desc">Pan Fried Sausage</div></div>
+  <div class="controls"><div class="price">NT$148</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP06', -1)">-</button><input type="number" id="qty_AP06" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP06', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP07" data-price="148">
-  <div class="meta">
-    <div class="name">AP07 爆漿南瓜酥 – NT$148</div>
-    <div class="desc">Deep Fried Pumpkin Crisp</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$148</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP07', -1)">-</button>
-      <input type="number" id="qty_AP07" name="qty_AP07" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP07', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP07 爆漿南瓜酥 – NT$148</div><div class="desc">Deep Fried Pumpkin Crisp</div></div>
+  <div class="controls"><div class="price">NT$148</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP07', -1)">-</button><input type="number" id="qty_AP07" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP07', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP08" data-price="198">
-  <div class="meta">
-    <div class="name">AP08 香料雞翅 – NT$198</div>
-    <div class="desc">Deep Fried Chicken Wings</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$198</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP08', -1)">-</button>
-      <input type="number" id="qty_AP08" name="qty_AP08" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP08', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP08 香料雞翅 – NT$198</div><div class="desc">Deep Fried Chicken Wings</div></div>
+  <div class="controls"><div class="price">NT$198</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP08', -1)">-</button><input type="number" id="qty_AP08" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP08', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP09" data-price="198">
-  <div class="meta">
-    <div class="name">AP09 廣島生蠔 – NT$198</div>
-    <div class="desc">Deep Fried Oysters</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$198</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP09', -1)">-</button>
-      <input type="number" id="qty_AP09" name="qty_AP09" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP09', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP09 廣島生蠔 – NT$198</div><div class="desc">Deep Fried Oysters</div></div>
+  <div class="controls"><div class="price">NT$198</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP09', -1)">-</button><input type="number" id="qty_AP09" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP09', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP10" data-price="298">
-  <div class="meta">
-    <div class="name">AP10 鮮炸透抽 – NT$298</div>
-    <div class="desc">Deep Fried Squids</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$298</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP10', -1)">-</button>
-      <input type="number" id="qty_AP10" name="qty_AP10" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP10', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP10 鮮炸透抽 – NT$298</div><div class="desc">Deep Fried Squids</div></div>
+  <div class="controls"><div class="price">NT$298</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP10', -1)">-</button><input type="number" id="qty_AP10" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP10', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="AP11" data-price="488">
-  <div class="meta">
-    <div class="name">AP11 歡樂拼盤 – NT$488</div>
-    <div class="desc">薯條, 洋蔥圈, 德國香腸 x1, 香料雞翅 x3</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$488</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('AP11', -1)">-</button>
-      <input type="number" id="qty_AP11" name="qty_AP11" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('AP11', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">AP11 歡樂拼盤 – NT$488</div><div class="desc">薯條, 洋蔥圈, 德國香腸 x1, 香料雞翅 x3</div></div>
+  <div class="controls"><div class="price">NT$488</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('AP11', -1)">-</button><input type="number" id="qty_AP11" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('AP11', 1)">+</button></div></div>
+</div>
+
+<!-- 義大利麵 Pasta（補齊 PDF 所列所有口味） -->
+<h2>義大利麵 Pasta（完整）</h2>
+
+<!-- Cream Sauce -->
+<div class="item" data-id="PA01" data-price="290">
+  <div class="meta"><div class="name">PA01 奶油培根斜管麵 – NT$290</div><div class="desc">Penne with Bacon in Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$290</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA01', -1)">-</button><input type="number" id="qty_PA01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA01', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA02" data-price="290">
+  <div class="meta"><div class="name">PA02 奶油燻雞義大利麵 – NT$290</div><div class="desc">Spaghetti with Smoked Chicken in Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$290</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA02', -1)">-</button><input type="number" id="qty_PA02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA02', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA03" data-price="320">
+  <div class="meta"><div class="name">PA03 奶油鮮魚義大利麵 – NT$320</div><div class="desc">Spaghetti with Fish in Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$320</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA03', -1)">-</button><input type="number" id="qty_PA03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA03', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA04" data-price="380">
+  <div class="meta"><div class="name">PA04 燻鮭魚奶油義大利麵 – NT$380</div><div class="desc">Spaghetti with Salmon in Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$380</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA04', -1)">-</button><input type="number" id="qty_PA04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA04', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA05" data-price="450">
+  <div class="meta"><div class="name">PA05 奶油海鮮斜管麵 – NT$450</div><div class="desc">Penne with Mixed Seafood in Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA05', -1)">-</button><input type="number" id="qty_PA05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA05', 1)">+</button></div></div>
+</div>
+
+<!-- Tomato Sauce -->
+<div class="item" data-id="PA06" data-price="280">
+  <div class="meta"><div class="name">PA06 經典肉醬斜管麵 – NT$280</div><div class="desc">Penne Bolognese</div></div>
+  <div class="controls"><div class="price">NT$280</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA06', -1)">-</button><input type="number" id="qty_PA06" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA06', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA07" data-price="320">
+  <div class="meta"><div class="name">PA07 煙花女蕃茄鮮魚麵 (小辣) – NT$320</div><div class="desc">Spaghetti with Fish in Anchovy and Tomato Sauce</div></div>
+  <div class="controls"><div class="price">NT$320</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA07', -1)">-</button><input type="number" id="qty_PA07" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA07', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA08" data-price="330">
+  <div class="meta"><div class="name">PA08 辣味雞肉蕃茄義大利麵 (小辣) – NT$330</div><div class="desc">Spaghetti with Chicken in Spicy Tomato Sauce</div></div>
+  <div class="controls"><div class="price">NT$330</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA08', -1)">-</button><input type="number" id="qty_PA08" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA08', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA09" data-price="350">
+  <div class="meta"><div class="name">PA09 蕃茄雪花牛義大利麵 (小辣) – NT$350</div><div class="desc">Spaghetti with Beef slices in Spicy Tomato Sauce</div></div>
+  <div class="controls"><div class="price">NT$350</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA09', -1)">-</button><input type="number" id="qty_PA09" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA09', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA10" data-price="420">
+  <div class="meta"><div class="name">PA10 米蘭海鮮義大利麵 – NT$420</div><div class="desc">Spaghetti with Mixed Seafood in Tomato Sauce</div></div>
+  <div class="controls"><div class="price">NT$420</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA10', -1)">-</button><input type="number" id="qty_PA10" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA10', 1)">+</button></div></div>
+</div>
+
+<!-- Olive Oil -->
+<div class="item" data-id="PA11" data-price="320">
+  <div class="meta"><div class="name">PA11 川辣培根扁麵 (中辣) – NT$320</div><div class="desc">Linguine with Bacon and Mushroom in Devil Chili Oil</div></div>
+  <div class="controls"><div class="price">NT$320</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA11', -1)">-</button><input type="number" id="qty_PA11" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA11', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA12" data-price="360">
+  <div class="meta"><div class="name">PA12 季節蔬菜扁麵 (全素) – NT$360</div><div class="desc">Linguine with Mixed Vegetables in Olive Oil</div></div>
+  <div class="controls"><div class="price">NT$360</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA12', -1)">-</button><input type="number" id="qty_PA12" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA12', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA13" data-price="360">
+  <div class="meta"><div class="name">PA13 辣炒牛肉義大利麵 (小辣) – NT$360</div><div class="desc">Spaghetti with Beef Slices in Chili Olive Oil</div></div>
+  <div class="controls"><div class="price">NT$360</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA13', -1)">-</button><input type="number" id="qty_PA13" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA13', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA14" data-price="385">
+  <div class="meta"><div class="name">PA14 白酒蛤蜊扁麵 (微辣) – NT$385</div><div class="desc">Linguine with Clams in Garlic and White Wine Sauce</div></div>
+  <div class="controls"><div class="price">NT$385</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA14', -1)">-</button><input type="number" id="qty_PA14" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA14', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA15" data-price="420">
+  <div class="meta"><div class="name">PA15 香蒜辣椒鴨肉義大利麵 (小辣) – NT$420</div><div class="desc">Spaghetti with Pepper Duck Pastrami in Chili Olive Oil</div></div>
+  <div class="controls"><div class="price">NT$420</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA15', -1)">-</button><input type="number" id="qty_PA15" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA15', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA16" data-price="450">
+  <div class="meta"><div class="name">PA16 辣味海鮮墨魚黑麵 (小辣) – NT$450</div><div class="desc">Ink Pasta with Mixed Seafood in Chili and White Wine Sauce</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA16', -1)">-</button><input type="number" id="qty_PA16" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA16', 1)">+</button></div></div>
+</div>
+
+<!-- Pesto -->
+<div class="item" data-id="PA17" data-price="360">
+  <div class="meta"><div class="name">PA17 青醬牛肉義大利麵 – NT$360</div><div class="desc">Spaghetti with Beef in Pesto Sauce</div></div>
+  <div class="controls"><div class="price">NT$360</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA17', -1)">-</button><input type="number" id="qty_PA17" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA17', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA18" data-price="420">
+  <div class="meta"><div class="name">PA18 青醬蛤蠣義大利麵 – NT$420</div><div class="desc">Spaghetti with Clams in Pesto Sauce</div></div>
+  <div class="controls"><div class="price">NT$420</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA18', -1)">-</button><input type="number" id="qty_PA18" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA18', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA19" data-price="450">
+  <div class="meta"><div class="name">PA19 青醬海鮮義大利麵 – NT$450</div><div class="desc">Spaghetti with Mixed Seafood in Pesto Sauce</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA19', -1)">-</button><input type="number" id="qty_PA19" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA19', 1)">+</button></div></div>
+</div>
+
+<!-- Signature -->
+<div class="item" data-id="PA20" data-price="350">
+  <div class="meta"><div class="name">PA20 檸檬雞肉義大利麵 (微辣) – NT$350</div><div class="desc">Spaghetti with Chicken in Spicy Lemon Sauce</div></div>
+  <div class="controls"><div class="price">NT$350</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA20', -1)">-</button><input type="number" id="qty_PA20" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA20', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA21" data-price="350">
+  <div class="meta"><div class="name">PA21 粉紅醬雞肉義大利麵 (微辣) – NT$350</div><div class="desc">Spaghetti with Chicken in Spicy Pink Sauce</div></div>
+  <div class="controls"><div class="price">NT$350</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA21', -1)">-</button><input type="number" id="qty_PA21" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA21', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA22" data-price="360">
+  <div class="meta"><div class="name">PA22 藍起士菌菇扁麵 (奶素) – NT$360</div><div class="desc">Linguine with Mixed Mushrooms in Blue Cheese Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$360</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA22', -1)">-</button><input type="number" id="qty_PA22" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA22', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="PA23" data-price="450">
+  <div class="meta"><div class="name">PA23 威尼斯海鮮義大利麵 (微辣) – NT$450</div><div class="desc">Spaghetti with Mixed Seafood in Tai-Spicy Pink Sauce</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('PA23', -1)">-</button><input type="number" id="qty_PA23" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('PA23', 1)">+</button></div></div>
+</div>
+
+<!-- Risotto / 風味飯食 -->
+<h2>燉飯 Risotto</h2>
+
+<div class="item" data-id="RI01" data-price="345">
+  <div class="meta"><div class="name">RI01 鳳梨鮮蝦燉飯 – NT$345</div><div class="desc">Risotto with Shrimps and Pineapple in Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$345</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('RI01', -1)">-</button><input type="number" id="qty_RI01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('RI01', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="RI02" data-price="360">
+  <div class="meta"><div class="name">RI02 橄欖油蔬菜燉飯 (全素) – NT$360</div><div class="desc">Risotto with Mixed Vegetables in Olive Oil</div></div>
+  <div class="controls"><div class="price">NT$360</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('RI02', -1)">-</button><input type="number" id="qty_RI02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('RI02', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="RI03" data-price="395">
+  <div class="meta"><div class="name">RI03 燻鮭魚奶油燉飯 – NT$395</div><div class="desc">Risotto with Smoked Salmon in Cream Sauce</div></div>
+  <div class="controls"><div class="price">NT$395</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('RI03', -1)">-</button><input type="number" id="qty_RI03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('RI03', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="RI04" data-price="450">
+  <div class="meta"><div class="name">RI04 野菇蟹肉燉飯 – NT$450</div><div class="desc">Mixed Mushrooms and Crab Risotto</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('RI04', -1)">-</button><input type="number" id="qty_RI04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('RI04', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="RI05" data-price="450">
+  <div class="meta"><div class="name">RI05 墨汁透抽燉飯 – NT$450</div><div class="desc">Ink Risotto with Squids</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('RI05', -1)">-</button><input type="number" id="qty_RI05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('RI05', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="RI06" data-price="420">
+  <div class="meta"><div class="name">RI06 紅酒牛肉燉飯 (微辣) – NT$420</div><div class="desc">Risotto with Beef Stewed in Red wine Sauce</div></div>
+  <div class="controls"><div class="price">NT$420</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('RI06', -1)">-</button><input type="number" id="qty_RI06" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('RI06', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="RI07" data-price="450">
+  <div class="meta"><div class="name">RI07 奶油海鮮燉飯 – NT$450</div><div class="desc">Risotto with Mixed Seafood</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('RI07', -1)">-</button><input type="number" id="qty_RI07" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('RI07', 1)">+</button></div></div>
+</div>
+
+<!-- Main Course -->
+<h2>推薦主菜 Main Course</h2>
+
+<div class="item" data-id="MC01" data-price="450">
+  <div class="meta"><div class="name">MC01 香料雞腿排 – NT$450</div><div class="desc">Pan Fried Chicken Legs</div></div>
+  <div class="controls"><div class="price">NT$450</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('MC01', -1)">-</button><input type="number" id="qty_MC01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('MC01', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="MC02" data-price="490">
+  <div class="meta"><div class="name">MC02 美國首選板腱牛排 – NT$490</div><div class="desc">US Choice Tendon Steak</div></div>
+  <div class="controls"><div class="price">NT$490</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('MC02', -1)">-</button><input type="number" id="qty_MC02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('MC02', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="MC03" data-price="520">
+  <div class="meta"><div class="name">MC03 地中海風什錦海鮮 – NT$520</div><div class="desc">Sealed Baked Mixed Seafood</div></div>
+  <div class="controls"><div class="price">NT$520</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('MC03', -1)">-</button><input type="number" id="qty_MC03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('MC03', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="MC04" data-price="520">
+  <div class="meta"><div class="name">MC04 義式香煎鱸魚 – NT$520</div><div class="desc">Pan Fried Seabass in Seasoning Sauce</div></div>
+  <div class="controls"><div class="price">NT$520</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('MC04', -1)">-</button><input type="number" id="qty_MC04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('MC04', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="MC05" data-price="520">
+  <div class="meta"><div class="name">MC05 香煎松阪豬 – NT$520</div><div class="desc">Pan Fried Matsusaka Pork Chop</div></div>
+  <div class="controls"><div class="price">NT$520</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('MC05', -1)">-</button><input type="number" id="qty_MC05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('MC05', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="MC06" data-price="680">
+  <div class="meta"><div class="name">MC06 招牌辣烤肋排 – NT$680</div><div class="desc">Smoked Pork Ribs in Spicy Herb Sauce</div></div>
+  <div class="controls"><div class="price">NT$680</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('MC06', -1)">-</button><input type="number" id="qty_MC06" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('MC06', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="MC07" data-price="680">
+  <div class="meta"><div class="name">MC07 脆皮豬腳 – NT$680</div><div class="desc">Roasted Pig Knuckle with Handmade Sauerkraut</div></div>
+  <div class="controls"><div class="price">NT$680</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('MC07', -1)">-</button><input type="number" id="qty_MC07" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('MC07', 1)">+</button></div></div>
 </div>
 
 <!-- 甜點 Desserts -->
 <h2>甜點 Dessert</h2>
 
 <div class="item" data-id="DS01" data-price="175">
-  <div class="meta">
-    <div class="name">DS01 經典提拉米蘇 – NT$175</div>
-    <div class="desc">Tiramisu</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$175</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('DS01', -1)">-</button>
-      <input type="number" id="qty_DS01" name="qty_DS01" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('DS01', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">DS01 經典提拉米蘇 – NT$175</div><div class="desc">Tiramisu</div></div>
+  <div class="controls"><div class="price">NT$175</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('DS01', -1)">-</button><input type="number" id="qty_DS01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('DS01', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="DS02" data-price="165">
-  <div class="meta">
-    <div class="name">DS02 覆盆子鮮奶酪 – NT$165</div>
-    <div class="desc">Panna Cotta with Raspberry Sauce</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$165</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('DS02', -1)">-</button>
-      <input type="number" id="qty_DS02" name="qty_DS02" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('DS02', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">DS02 覆盆子鮮奶酪 – NT$165</div><div class="desc">Panna Cotta with Raspberry Sauce</div></div>
+  <div class="controls"><div class="price">NT$165</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('DS02', -1)">-</button><input type="number" id="qty_DS02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('DS02', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="DS03" data-price="150">
-  <div class="meta">
-    <div class="name">DS03 焦糖烤布蕾 – NT$150</div>
-    <div class="desc">Cream Brulee</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$150</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('DS03', -1)">-</button>
-      <input type="number" id="qty_DS03" name="qty_DS03" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('DS03', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">DS03 焦糖烤布蕾 – NT$150</div><div class="desc">Cream Brulee</div></div>
+  <div class="controls"><div class="price">NT$150</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('DS03', -1)">-</button><input type="number" id="qty_DS03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('DS03', 1)">+</button></div></div>
 </div>
 
 <!-- 茶飲 / 咖啡 Tea & Coffee -->
 <h2>職人茶飲 / 義式咖啡 Tea & Coffee</h2>
 
 <div class="item" data-id="TD01" data-price="190">
-  <div class="meta">
-    <div class="name">TD01 歐洲水果茶 (壺) – NT$190</div>
-    <div class="desc">Organic Dried Fruits and Herb Tea</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$190</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('TD01', -1)">-</button>
-      <input type="number" id="qty_TD01" name="qty_TD01" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('TD01', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">TD01 歐洲水果茶 (壺) – NT$190</div><div class="desc">Organic Dried Fruits and Herb Tea</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('TD01', -1)">-</button><input type="number" id="qty_TD01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('TD01', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="TD02" data-price="190">
-  <div class="meta">
-    <div class="name">TD02 皇家香草茶 (壺) – NT$190</div>
-    <div class="desc">Organic Mint and Herb Tea</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$190</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('TD02', -1)">-</button>
-      <input type="number" id="qty_TD02" name="qty_TD02" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('TD02', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">TD02 皇家香草茶 (壺) – NT$190</div><div class="desc">Organic Mint and Herb Tea</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('TD02', -1)">-</button><input type="number" id="qty_TD02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('TD02', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="TD03" data-price="190">
+  <div class="meta"><div class="name">TD03 桂圓紅棗茶 (壺) – NT$190</div><div class="desc">Longan and Red Dates Tea</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('TD03', -1)">-</button><input type="number" id="qty_TD03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('TD03', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="TD04" data-price="190">
+  <div class="meta"><div class="name">TD04 菊花枸杞雪梨茶 (壺) – NT$190</div><div class="desc">Chrysanthemum and Pear Tea</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('TD04', -1)">-</button><input type="number" id="qty_TD04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('TD04', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="TD05" data-price="190">
+  <div class="meta"><div class="name">TD05 玫瑰桂圓暖身茶 (壺) – NT$190</div><div class="desc">Rose and Longan Tea</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('TD05', -1)">-</button><input type="number" id="qty_TD05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('TD05', 1)">+</button></div></div>
 </div>
 
 <div class="item" data-id="CF01" data-price="100">
-  <div class="meta">
-    <div class="name">CF01 雙倍義式濃縮 – NT$100</div>
-    <div class="desc">Double Espresso</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$100</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('CF01', -1)">-</button>
-      <input type="number" id="qty_CF01" name="qty_CF01" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('CF01', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">CF01 雙倍義式濃縮 – NT$100</div><div class="desc">Double Espresso</div></div>
+  <div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('CF01', -1)">-</button><input type="number" id="qty_CF01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('CF01', 1)">+</button></div></div>
 </div>
 
-<div class="item" data-id="CF02" data-price="130">
-  <div class="meta">
-    <div class="name">CF02 卡布奇諾 – NT$130</div>
-    <div class="desc">Cappuccino</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$130</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('CF02', -1)">-</button>
-      <input type="number" id="qty_CF02" name="qty_CF02" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('CF02', 1)">+</button>
-    </div>
-  </div>
+<div class="item" data-id="CF02" data-price="100">
+  <div class="meta"><div class="name">CF02 精選美式咖啡 – NT$100</div><div class="desc">Selected Americano</div></div>
+  <div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('CF02', -1)">-</button><input type="number" id="qty_CF02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('CF02', 1)">+</button></div></div>
 </div>
 
-<!-- 果汁 / 氣泡 / 汽水 Juices, Soda, Italian Soda -->
-<h2>果汁 / 氣泡 / 汽水 Juices & Sodas</h2>
+<div class="item" data-id="CF03" data-price="130">
+  <div class="meta"><div class="name">CF03 卡布奇諾 – NT$130</div><div class="desc">Cappuccino</div></div>
+  <div class="controls"><div class="price">NT$130</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('CF03', -1)">-</button><input type="number" id="qty_CF03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('CF03', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="CF04" data-price="130">
+  <div class="meta"><div class="name">CF04 義式拿鐵 – NT$130</div><div class="desc">Latte</div></div>
+  <div class="controls"><div class="price">NT$130</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('CF04', -1)">-</button><input type="number" id="qty_CF04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('CF04', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="CF05" data-price="145">
+  <div class="meta"><div class="name">CF05 榛果拿鐵 – NT$145</div><div class="desc">Hazelnut Latte</div></div>
+  <div class="controls"><div class="price">NT$145</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('CF05', -1)">-</button><input type="number" id="qty_CF05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('CF05', 1)">+</button></div></div>
+</div>
+
+<!-- 特調茶飲 / 果茶 -->
+<div class="item" data-id="ST01" data-price="100">
+  <div class="meta"><div class="name">ST01 貴婦紅茶 (I)(H) – NT$100</div><div class="desc">Iced Tea</div></div>
+  <div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('ST01', -1)">-</button><input type="number" id="qty_ST01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('ST01', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="ST02" data-price="100">
+  <div class="meta"><div class="name">ST02 茉莉茶王 – NT$100</div><div class="desc">Green Tea</div></div>
+  <div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('ST02', -1)">-</button><input type="number" id="qty_ST02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('ST02', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="ST03" data-price="100">
+  <div class="meta"><div class="name">ST03 皇家奶茶 – NT$100</div><div class="desc">Milk Tea</div></div>
+  <div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('ST03', -1)">-</button><input type="number" id="qty_ST03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('ST03', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="ST04" data-price="100">
+  <div class="meta"><div class="name">ST04 可爾必思 – NT$100</div><div class="desc">Calpis</div></div>
+  <div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('ST04', -1)">-</button><input type="number" id="qty_ST04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('ST04', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="ST05" data-price="220">
+  <div class="meta"><div class="name">ST05 NIN 鮮果茶 – NT$220</div><div class="desc">Fruits Tea with Orange, Apple, Guava, Citron</div></div>
+  <div class="controls"><div class="price">NT$220</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('ST05', -1)">-</button><input type="number" id="qty_ST05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('ST05', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="ST06" data-price="220">
+  <div class="meta"><div class="name">ST06 繽紛鮮果茶 – NT$220</div><div class="desc">Fruits Tea with Pitaya, Orange, Apple, Guava, Citron</div></div>
+  <div class="controls"><div class="price">NT$220</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('ST06', -1)">-</button><input type="number" id="qty_ST06" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('ST06', 1)">+</button></div></div>
+</div>
+
+<!-- 健康蔬果汁 / 鮮奶飲 Juices -->
+<h2>健康蔬果汁 / 鮮奶飲 Juice / Milk Shake</h2>
 
 <div class="item" data-id="JU01" data-price="190">
-  <div class="meta">
-    <div class="name">JU01 綠野鮮蹤 – NT$190</div>
-    <div class="desc">芹菜、小黃瓜、蘋果</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$190</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('JU01', -1)">-</button>
-      <input type="number" id="qty_JU01" name="qty_JU01" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('JU01', 1)">+</button>
-    </div>
-  </div>
+  <div class="meta"><div class="name">JU01 綠野鮮蹤 – NT$190</div><div class="desc">Celery, Cucumber and Apple</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('JU01', -1)">-</button><input type="number" id="qty_JU01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('JU01', 1)">+</button></div></div>
 </div>
 
-<div class="item" data-id="JU02" data-price="175">
-  <div class="meta">
-    <div class="name">JU02 手作香蕉牛奶 – NT$175</div>
-    <div class="desc">Banana and Fresh Milk</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$175</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('JU02', -1)">-</button>
-      <input type="number" id="qty_JU02" name="qty_JU02" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('JU02', 1)">+</button>
-    </div>
-  </div>
+<div class="item" data-id="JU02" data-price="190">
+  <div class="meta"><div class="name">JU02 抗氧射手 – NT$190</div><div class="desc">Carrot, Apple and Celery</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('JU02', -1)">-</button><input type="number" id="qty_JU02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('JU02', 1)">+</button></div></div>
 </div>
 
-<div class="item" data-id="SD01" data-price="100">
-  <div class="meta">
-    <div class="name">SD01 可樂 – NT$100</div>
-    <div class="desc">Coke</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$100</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('SD01', -1)">-</button>
-      <input type="number" id="qty_SD01" name="qty_SD01" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('SD01', 1)">+</button>
-    </div>
-  </div>
+<div class="item" data-id="JU03" data-price="190">
+  <div class="meta"><div class="name">JU03 青春能量 – NT$190</div><div class="desc">Pitaya, Apple and Banana</div></div>
+  <div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('JU03', -1)">-</button><input type="number" id="qty_JU03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('JU03', 1)">+</button></div></div>
 </div>
 
-<div class="item" data-id="SD02" data-price="100">
-  <div class="meta">
-    <div class="name">SD02 雪碧 – NT$100</div>
-    <div class="desc">Sprite</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$100</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('SD02', -1)">-</button>
-      <input type="number" id="qty_SD02" name="qty_SD02" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('SD02', 1)">+</button>
-    </div>
-  </div>
+<div class="item" data-id="JU04" data-price="175">
+  <div class="meta"><div class="name">JU04 手作香蕉牛奶 – NT$175</div><div class="desc">Banana and Fresh Milk</div></div>
+  <div class="controls"><div class="price">NT$175</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('JU04', -1)">-</button><input type="number" id="qty_JU04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('JU04', 1)">+</button></div></div>
 </div>
+
+<div class="item" data-id="JU05" data-price="175">
+  <div class="meta"><div class="name">JU05 手作蘋果牛奶 – NT$175</div><div class="desc">Apple and Fresh Milk</div></div>
+  <div class="controls"><div class="price">NT$175</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('JU05', -1)">-</button><input type="number" id="qty_JU05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('JU05', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="JU06" data-price="175">
+  <div class="meta"><div class="name">JU06 甘蔗鮮青檸 – NT$175</div><div class="desc">Sugarcane and Lemon</div></div>
+  <div class="controls"><div class="price">NT$175</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('JU06', -1)">-</button><input type="number" id="qty_JU06" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('JU06', 1)">+</button></div></div>
+</div>
+
+<div class="item" data-id="JU07" data-price="175">
+  <div class="meta"><div class="name">JU07 芭樂撞蘋果 – NT$175</div><div class="desc">Guava and Apple</div></div>
+  <div class="controls"><div class="price">NT$175</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('JU07', -1)">-</button><input type="number" id="qty_JU07" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('JU07', 1)">+</button></div></div>
+</div>
+
+<!-- 汽水 Soda -->
+<h2>可樂 / 汽水 Soda</h2>
+<div class="item" data-id="SD01" data-price="100"><div class="meta"><div class="name">SD01 可樂 – NT$100</div><div class="desc">Coke</div></div><div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('SD01', -1)">-</button><input type="number" id="qty_SD01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('SD01', 1)">+</button></div></div></div>
+
+<div class="item" data-id="SD02" data-price="100"><div class="meta"><div class="name">SD02 雪碧 – NT$100</div><div class="desc">Sprite</div></div><div class="controls"><div class="price">NT$100</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('SD02', -1)">-</button><input type="number" id="qty_SD02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('SD02', 1)">+</button></div></div></div>
+
+<!-- Italian Soda -->
+<h2>氣泡飲 / Italian Soda</h2>
+<div class="item" data-id="IS01" data-price="190"><div class="meta"><div class="name">IS01 蔓越莓果蘇打 – NT$190</div><div class="desc">Mixed Berries Italian Soda</div></div><div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('IS01', -1)">-</button><input type="number" id="qty_IS01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('IS01', 1)">+</button></div></div></div>
+
+<div class="item" data-id="IS02" data-price="190"><div class="meta"><div class="name">IS02 無酒精莫西多蘇打 – NT$190</div><div class="desc">Alcohol Free Mojito</div></div><div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('IS02', -1)">-</button><input type="number" id="qty_IS02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('IS02', 1)">+</button></div></div></div>
+
+<div class="item" data-id="IS03" data-price="190"><div class="meta"><div class="name">IS03 哈密瓜藍橙蘇打 – NT$190</div><div class="desc">Melon Italian Soda</div></div><div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('IS03', -1)">-</button><input type="number" id="qty_IS03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('IS03', 1)">+</button></div></div></div>
 
 <!-- 啤酒 Beer -->
 <h2>啤酒 Beer</h2>
+<div class="item" data-id="BR01" data-price="150"><div class="meta"><div class="name">BR01 台灣啤酒 (330ml) – NT$150</div><div class="desc">Taiwan Beer</div></div><div class="controls"><div class="price">NT$150</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('BR01', -1)">-</button><input type="number" id="qty_BR01" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('BR01', 1)">+</button></div></div></div>
 
-<div class="item" data-id="BR01" data-price="150">
-  <div class="meta">
-    <div class="name">BR01 台灣啤酒 (330ml) – NT$150</div>
-    <div class="desc">Taiwan Beer</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$150</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('BR01', -1)">-</button>
-      <input type="number" id="qty_BR01" name="qty_BR01" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('BR01', 1)">+</button>
-    </div>
-  </div>
-</div>
+<div class="item" data-id="BR02" data-price="150"><div class="meta"><div class="name">BR02 海尼根 (330ml) – NT$150</div><div class="desc">Heineken</div></div><div class="controls"><div class="price">NT$150</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('BR02', -1)">-</button><input type="number" id="qty_BR02" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('BR02', 1)">+</button></div></div></div>
 
-<div class="item" data-id="BR02" data-price="150">
-  <div class="meta">
-    <div class="name">BR02 海尼根 (330ml) – NT$150</div>
-    <div class="desc">Heineken</div>
-  </div>
-  <div class="controls">
-    <div class="price">NT$150</div>
-    <div class="qty">
-      <button type="button" class="ghost" onclick="changeQty('BR02', -1)">-</button>
-      <input type="number" id="qty_BR02" name="qty_BR02" value="0" min="0" onchange="recalc()">
-      <button type="button" onclick="changeQty('BR02', 1)">+</button>
-    </div>
-  </div>
-</div>
+<div class="item" data-id="BR03" data-price="150"><div class="meta"><div class="name">BR03 可樂娜 (330ml) – NT$150</div><div class="desc">Corona</div></div><div class="controls"><div class="price">NT$150</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('BR03', -1)">-</button><input type="number" id="qty_BR03" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('BR03', 1)">+</button></div></div></div>
+
+<div class="item" data-id="BR04" data-price="190"><div class="meta"><div class="name">BR04 雪藏白啤酒 (5%) – NT$190</div><div class="desc">North Taiwan Wheat Beer</div></div><div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('BR04', -1)">-</button><input type="number" id="qty_BR04" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('BR04', 1)">+</button></div></div></div>
+
+<div class="item" data-id="BR05" data-price="190"><div class="meta"><div class="name">BR05 北台灣經典八度啤酒 (8%) – NT$190</div><div class="desc">Classic Six Beer</div></div><div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('BR05', -1)">-</button><input type="number" id="qty_BR05" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('BR05', 1)">+</button></div></div></div>
+
+<div class="item" data-id="BR06" data-price="190"><div class="meta"><div class="name">BR06 北台灣荔枝啤酒 (6%) – NT$190</div><div class="desc">Lychee Beer</div></div><div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('BR06', -1)">-</button><input type="number" id="qty_BR06" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('BR06', 1)">+</button></div></div></div>
+
+<div class="item" data-id="BR07" data-price="190"><div class="meta"><div class="name">BR07 康士坦黑啤酒 (8%) – NT$190</div><div class="desc">KST's Dark Beer</div></div><div class="controls"><div class="price">NT$190</div><div class="qty"><button type="button" class="ghost" onclick="changeQty('BR07', -1)">-</button><input type="number" id="qty_BR07" value="0" min="0" onchange="recalc()"><button type="button" onclick="changeQty('BR07', 1)">+</button></div></div></div>
 
       <!-- 代號輸入(必填) -->
       <div class="form-row">
