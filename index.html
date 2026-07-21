@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>11NINI Menu 2026 – 線上點餐 (需輸入代號)</title>
+  <title>NINI Menu 2026 – 線上點餐 (需輸入代號)</title>
   <style>
     body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Arial;background:#f6f7fb;margin:0;padding:20px;}
     .wrap{max-width:1100px;margin:0 auto;background:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
@@ -33,7 +33,7 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>膩      NINI Menu 2026 – 線上點餐 (需輸入代號)</h1>
+    <h1>膩 NINI Menu 2026 – 線上點餐 (需輸入代號)</h1>
 
     <p class="note">請在送出訂單前輸入代號 (例如 666 或 666#)。代號為必填，系統會在送出前自動正規化為數字加 #。</p>
 
@@ -458,7 +458,7 @@
   </div>
 
   <script>
-    // 請改成你的 Web App URL 與 Sheet ID
+    // 設定為你提供的 Web App URL 與 Sheet ID
     const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwP8fbAVlL6gYWDB5ZrbRGmWoZqrldRxHBtGFp1TkKkwCkFYEHkRIMq-iUE_eGrXBfd/exec';
     const SHEET_ID = '1DgEfKOK7FbA3r4_wCwDAtetOoR619nIU9eyHSP5UkKY';
 
@@ -509,6 +509,7 @@
       document.getElementById('submitBtn').addEventListener('click', submitOrder);
     });
 
+    // 驗證代號並正規化: 接受 "666" 或 "666#", 最終送出 "666#"
     function validateUserCode(code) {
       if (!code) return { ok: false, msg: '代號為必填。' };
       const trimmed = code.trim();
@@ -560,6 +561,7 @@
         return;
       }
 
+      // 產生系統訂單代號
       const now = new Date();
       const pad = n => String(n).padStart(2, '0');
       const datePart = now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
@@ -568,38 +570,52 @@
       const systemOrderCode = 'NINI-' + datePart + '-' + timePart + '-' + rand;
       document.getElementById('orderCode').value = systemOrderCode;
 
-     // 假設 payload 已建立（物件）
-const payload = {
-  systemOrderCode: systemOrderCode,
-  userCode: userCode,
-  createdAt: new Date().toISOString(),
-  items: orderItems,
-  total: total,
-  sheetId: SHEET_ID
-};
+      const payload = {
+        systemOrderCode: systemOrderCode,
+        userCode: userCode,
+        createdAt: now.toISOString(),
+        items: orderItems,
+        total: total,
+        sheetId: SHEET_ID
+      };
 
-const formBody = new URLSearchParams();
-formBody.append('data', JSON.stringify(payload));
+      showResult('正在送出訂單…', '');
 
-fetch(GAS_WEB_APP_URL, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-  body: formBody.toString()
-})
-.then(r => r.json())
-.then(res => {
-  if (res && res.status === 'success') {
-    showResult('訂單已送出，系統訂單代號: ' + systemOrderCode, 'success');
-  } else {
-    const msg = (res && res.message) ? res.message : '後端回傳錯誤';
-    showResult(msg, 'error');
-  }
-})
-.catch(err => {
-  console.error('fetch error', err);
-  showResult('送出失敗，請檢查 Apps Script 或網路連線。', 'error');
-});
+      // 使用 URLSearchParams 與 application/x-www-form-urlencoded 避免 preflight
+      const formBody = new URLSearchParams();
+      formBody.append('data', JSON.stringify(payload));
 
+      fetch(GAS_WEB_APP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: formBody.toString()
+      })
+      .then(response => {
+        // 嘗試解析 JSON 回應
+        return response.text().then(text => {
+          try { return JSON.parse(text); } catch (e) { return { status: 'error', message: '後端回傳非 JSON: ' + text }; }
+        });
+      })
+      .then(res => {
+        if (res && res.status === 'success') {
+          showResult('訂單已送出，系統訂單代號: ' + systemOrderCode + '；您輸入的代號: ' + userCode, 'success');
+          // 清空數量與代號欄位
+          orderItems.forEach(it => {
+            const q = document.getElementById('qty_' + it.code);
+            if (q) q.value = 0;
+          });
+          userCodeInput.value = '';
+          recalc();
+        } else {
+          const msg = (res && res.message) ? res.message : '送出失敗，請檢查 Apps Script 或網路連線。';
+          showResult(msg, 'error');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        showResult('送出失敗，請檢查 Apps Script 或網路連線。', 'error');
+      });
+    }
 
     function showResult(msg, type) {
       const el = document.getElementById('result');
