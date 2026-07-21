@@ -568,42 +568,38 @@
       const systemOrderCode = 'NINI-' + datePart + '-' + timePart + '-' + rand;
       document.getElementById('orderCode').value = systemOrderCode;
 
-      const payload = {
-        systemOrderCode: systemOrderCode,
-        userCode: userCode,
-        createdAt: now.toISOString(),
-        items: orderItems,
-        total: total,
-        sheetId: SHEET_ID
-      };
+     // 假設 payload 已建立（物件）
+const payload = {
+  systemOrderCode: systemOrderCode,
+  userCode: userCode,
+  createdAt: new Date().toISOString(),
+  items: orderItems,
+  total: total,
+  sheetId: SHEET_ID
+};
 
-      showResult('正在送出訂單…', '');
+const formBody = new URLSearchParams();
+formBody.append('data', JSON.stringify(payload));
 
-      fetch(GAS_WEB_APP_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      .then(response => response.json())
-      .then(res => {
-        if (res && res.status === 'success') {
-          showResult('訂單已送出，系統訂單代號: ' + systemOrderCode + '；您輸入的代號: ' + userCode, 'success');
-        } else {
-          const msg = (res && res.message) ? res.message : '送出失敗，請檢查 Apps Script 或網路連線。';
-          showResult(msg, 'error');
-        }
-        orderItems.forEach(it => {
-          const q = document.getElementById('qty_' + it.code);
-          if (q) q.value = 0;
-        });
-        userCodeInput.value = '';
-        recalc();
-      })
-      .catch(err => {
-        console.error(err);
-        showResult('送出失敗，請檢查 Apps Script 或網路連線。', 'error');
-      });
-    }
+fetch(GAS_WEB_APP_URL, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+  body: formBody.toString()
+})
+.then(r => r.json())
+.then(res => {
+  if (res && res.status === 'success') {
+    showResult('訂單已送出，系統訂單代號: ' + systemOrderCode, 'success');
+  } else {
+    const msg = (res && res.message) ? res.message : '後端回傳錯誤';
+    showResult(msg, 'error');
+  }
+})
+.catch(err => {
+  console.error('fetch error', err);
+  showResult('送出失敗，請檢查 Apps Script 或網路連線。', 'error');
+});
+
 
     function showResult(msg, type) {
       const el = document.getElementById('result');
