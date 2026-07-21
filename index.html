@@ -8,7 +8,6 @@
     body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Arial;background:#f6f7fb;margin:0;padding:20px}
     .wrap{max-width:1100px;margin:0 auto;background:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
     h1{margin:0 0 8px;font-size:22px}
-    h2{margin:18px 0 8px;font-size:16px;border-bottom:1px solid #eee;padding-bottom:6px}
     .item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #f0f0f0}
     .meta{max-width:68%}
     .name{font-weight:700}
@@ -20,7 +19,6 @@
     button.ghost{background:#efefef;color:#333}
     input[type="number"]{width:64px;padding:6px;border-radius:6px;border:1px solid #ddd;text-align:center}
     input[type="text"]{padding:8px;border-radius:6px;border:1px solid #ddd;width:220px}
-    select{padding:6px;border-radius:6px;border:1px solid #ddd}
     .summary{margin-top:16px;padding:12px;background:#fafafa;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
     .total{font-size:18px;font-weight:800}
     .checkout{background:#28a745;padding:10px 14px;border-radius:8px;color:#fff;font-weight:700;border:0;cursor:pointer}
@@ -28,20 +26,15 @@
     .success{color:#0b7a3f;font-weight:700}
     .error{color:#b02a37;font-weight:700}
     .form-row{display:flex;gap:12px;align-items:center;margin-top:12px}
-    .category-note{font-size:13px;color:#444;margin-top:6px}
-    @media (max-width:820px){ .meta{max-width:55%} .price{text-align:left} .form-row{flex-direction:column;align-items:flex-start} }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>膩 NINI Menu 2026 線上點餐</h1>
-    <p class="note">請輸入代號並選擇餐點數量，按送出後系統會寫入 Google 試算表。代號為必填，格式為數字或數字加 #。</p>
+    <h1>NINI Menu 2026 線上點餐</h1>
+    <p class="note">請輸入代號並選擇餐點數量，按送出後系統會寫入 Google 試算表。</p>
 
     <form id="orderForm" onsubmit="event.preventDefault(); submitOrder();">
-      <!-- SALAD -->
-      <h2>Salad</h2>
-      <div class="category-note">新鮮沙拉系列</div>
-
+      <!-- 範例餐點 -->
       <div class="item" data-id="SAL01" data-price="290">
         <div class="meta">
           <div class="name">SAL01 凱撒沙拉</div>
@@ -57,162 +50,15 @@
         </div>
       </div>
 
-      <div class="item" data-id="SAL02" data-price="260">
-        <div class="meta">
-          <div class="name">SAL02 希臘沙拉</div>
-          <div class="desc">小黃瓜、番茄、橄欖、菲達起司、檸檬油醋</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$260</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('SAL02', -1)">-</button>
-            <input type="number" id="qty_SAL02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('SAL02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PIZZA -->
-      <h2>Pizza</h2>
-      <div class="category-note">披薩可選 large 或 small</div>
-
-      <div class="item" data-id="PZ01" data-price-large="350" data-price-small="180">
-        <div class="meta">
-          <div class="name">PZ01 瑪格麗特披薩</div>
-          <div class="desc">九層塔、牛番茄、馬茲瑞拉起士、紅醬</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ01" onchange="recalc()">
-            <option value="large">large</option>
-            <option value="small">small</option>
-          </select>
-          <div class="price" id="price_PZ01">NT$350</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ01', -1)">-</button>
-            <input type="number" id="qty_PZ01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PZ02" data-price-large="420" data-price-small="220">
-        <div class="meta">
-          <div class="name">PZ02 夏威夷披薩</div>
-          <div class="desc">火腿、鳳梨、馬茲瑞拉起士</div>
-        </div>
-        <div class="controls">
-          <select id="size_PZ02" onchange="recalc()">
-            <option value="large">large</option>
-            <option value="small">small</option>
-          </select>
-          <div class="price" id="price_PZ02">NT$420</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PZ02', -1)">-</button>
-            <input type="number" id="qty_PZ02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PZ02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PASTA -->
-      <h2>Pasta</h2>
-      <div class="category-note">義大利麵系列</div>
-
-      <div class="item" data-id="PA01" data-price="320">
-        <div class="meta">
-          <div class="name">PA01 奶油培根義大利麵</div>
-          <div class="desc">培根、奶油醬、帕瑪森起司</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$320</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PA01', -1)">-</button>
-            <input type="number" id="qty_PA01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PA01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="PA02" data-price="300">
-        <div class="meta">
-          <div class="name">PA02 番茄海鮮義大利麵</div>
-          <div class="desc">蝦仁、淡菜、番茄紅醬</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$300</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('PA02', -1)">-</button>
-            <input type="number" id="qty_PA02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('PA02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- DRINKS -->
-      <h2>Drinks</h2>
-      <div class="category-note">飲料</div>
-
-      <div class="item" data-id="DR01" data-price="80">
-        <div class="meta">
-          <div class="name">DR01 可樂</div>
-          <div class="desc">330ml</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$80</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('DR01', -1)">-</button>
-            <input type="number" id="qty_DR01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('DR01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="item" data-id="DR02" data-price="90">
-        <div class="meta">
-          <div class="name">DR02 檸檬紅茶</div>
-          <div class="desc">500ml</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$90</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('DR02', -1)">-</button>
-            <input type="number" id="qty_DR02" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('DR02', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- DESSERT -->
-      <h2>Dessert</h2>
-      <div class="category-note">甜點</div>
-
-      <div class="item" data-id="DS01" data-price="150">
-        <div class="meta">
-          <div class="name">DS01 提拉米蘇</div>
-          <div class="desc">經典義式甜點</div>
-        </div>
-        <div class="controls">
-          <div class="price">NT$150</div>
-          <div class="qty">
-            <button type="button" class="ghost" onclick="changeQty('DS01', -1)">-</button>
-            <input type="number" id="qty_DS01" value="0" min="0" onchange="recalc()">
-            <button type="button" onclick="changeQty('DS01', 1)">+</button>
-          </div>
-        </div>
-      </div>
-
       <!-- 代號輸入 -->
       <div class="form-row">
         <label for="orderCodeInput"><strong>輸入代號</strong></label>
-        <input type="text" id="orderCodeInput" placeholder="請輸入代號，例如 666 或 666#" autocomplete="off">
-        <div id="codeHint" class="note">代號格式: 數字或數字加 #，系統會自動正規化。</div>
+        <input type="text" id="orderCodeInput" placeholder="例如 666 或 666#" autocomplete="off">
       </div>
 
-      <!-- Summary -->
-      <div class="summary" aria-live="polite">
+      <div class="summary">
         <div>
           <div><strong>已選餐點 :</strong> <span id="selectedCount">0</span></div>
-          <div class="note">請確認數量與代號後按「送出訂單」。</div>
         </div>
         <div style="text-align:right">
           <div class="total">總金額: NT$<span id="totalPrice">0</span></div>
@@ -221,16 +67,13 @@
           </div>
         </div>
       </div>
-
-      <input type="hidden" id="systemOrderCode" value="">
     </form>
 
     <div id="result" style="margin-top:12px"></div>
-    <div style="margin-top:12px;font-size:13px;color:#666">備註: 此頁面會 POST JSON 到你的 Apps Script Web App，Apps Script 會把訂單寫入你指定的 Google Sheet。</div>
   </div>
 
   <script>
-    // ====== 請改成你的實際值 ======
+    // 使用你提供的 Web App URL
     const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwUDkTnuXLqtcCRL0Sd8PX84ypAeMJQQ5PQsPpyi06RUOIcF1v3l_YQtyJ4DCVxVHnb4w/exec";
     const SHEET_ID = "1DgEfKOK7FbA3r4_wCwDAtetOoR6l9nIU9eyHSP5UkKY";
 
@@ -245,24 +88,14 @@
 
     function recalc() {
       const items = document.querySelectorAll('[data-id]');
-      let total = 0;
-      let count = 0;
+      let total = 0, count = 0;
       items.forEach(item => {
         const id = item.getAttribute('data-id');
         const qtyInput = document.getElementById('qty_' + id);
         if (!qtyInput) return;
         const qty = Number(qtyInput.value) || 0;
         if (qty <= 0) return;
-        let price = 0;
-        if (item.hasAttribute('data-price-large')) {
-          const sizeEl = document.getElementById('size_' + id);
-          const size = sizeEl ? sizeEl.value : 'large';
-          price = size === 'small' ? Number(item.getAttribute('data-price-small')) : Number(item.getAttribute('data-price-large'));
-          const priceLabel = document.getElementById('price_' + id);
-          if (priceLabel) priceLabel.textContent = 'NT$' + price;
-        } else {
-          price = Number(item.getAttribute('data-price')) || 0;
-        }
+        let price = Number(item.getAttribute('data-price')) || 0;
         total += price * qty;
         count += qty;
       });
@@ -270,33 +103,18 @@
       document.getElementById('selectedCount').textContent = count;
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('[data-price-large]').forEach(el => {
-        const id = el.getAttribute('data-id');
-        const priceLabel = document.getElementById('price_' + id);
-        if (priceLabel) priceLabel.textContent = 'NT$' + el.getAttribute('data-price-large');
-      });
-      recalc();
-    });
-
     function validateUserCode(code) {
-      if (!code) return { ok: false, msg: '代號為必填。' };
-      const trimmed = code.trim();
-      const reDigitsOnly = /^\d+$/;
-      const reDigitsHash = /^\d+#$/;
-      if (reDigitsHash.test(trimmed)) return { ok: true, value: trimmed };
-      if (reDigitsOnly.test(trimmed)) return { ok: true, value: trimmed + '#' };
-      return { ok: false, msg: '代號格式錯誤，請輸入數字或數字加 #，範例: 666 或 666#' };
+      if (!code) return { ok:false, msg:'代號為必填。'};
+      const t = code.trim();
+      if (/^\d+#$/.test(t)) return { ok:true, value:t };
+      if (/^\d+$/.test(t)) return { ok:true, value:t + '#' };
+      return { ok:false, msg:'代號格式錯誤，請輸入數字或數字加 #' };
     }
 
     async function submitOrder() {
       const userCodeInput = document.getElementById('orderCodeInput');
       const codeValidation = validateUserCode(userCodeInput.value);
-      if (!codeValidation.ok) {
-        showResult(codeValidation.msg, 'error');
-        userCodeInput.focus();
-        return;
-      }
+      if (!codeValidation.ok) { showResult(codeValidation.msg, 'error'); userCodeInput.focus(); return; }
       const userCode = codeValidation.value;
 
       const items = document.querySelectorAll('[data-id]');
@@ -308,89 +126,23 @@
         if (!qtyInput) return;
         const qty = Number(qtyInput.value) || 0;
         if (qty <= 0) return;
-        const nameEl = item.querySelector('.name');
-        const name = nameEl ? nameEl.textContent.trim() : id;
-        let size = '';
-        let price = 0;
-        if (item.hasAttribute('data-price-large')) {
-          const sizeSelect = document.getElementById('size_' + id);
-          size = sizeSelect ? sizeSelect.value : 'large';
-          price = size === 'small' ? Number(item.getAttribute('data-price-small')) : Number(item.getAttribute('data-price-large'));
-        } else {
-          price = Number(item.getAttribute('data-price')) || 0;
-        }
-        orderItems.push({ code: id, name: name, qty: qty, size: size, unit_price: price, line_total: price * qty });
+        const name = (item.querySelector('.name') || {}).textContent || id;
+        const price = Number(item.getAttribute('data-price')) || 0;
+        orderItems.push({ code:id, name:name.trim(), qty:qty, unit_price:price, line_total:price*qty });
         total += price * qty;
       });
 
-      if (orderItems.length === 0) {
-        showResult('請先選擇至少一項餐點。', 'error');
-        return;
-      }
+      if (orderItems.length === 0) { showResult('請先選擇至少一項餐點。','error'); return; }
 
       const now = new Date();
-      const pad = n => String(n).padStart(2, '0');
-      const datePart = now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+      const pad = n => String(n).padStart(2,'0');
+      const datePart = now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate());
       const timePart = pad(now.getHours()) + pad(now.getMinutes());
-      const rand = Math.floor(Math.random() * 9000) + 1000;
+      const rand = Math.floor(Math.random()*9000)+1000;
       const systemOrderCode = 'NINI-' + datePart + '-' + timePart + '-' + rand;
-      document.getElementById('systemOrderCode').value = systemOrderCode;
 
       const payload = {
         systemOrderCode: systemOrderCode,
         userCode: userCode,
         createdAt: now.toISOString(),
-        items: orderItems,
-        total: total,
-        sheetId: SHEET_ID
-      };
-
-      showResult('正在送出訂單…', '');
-
-try {
-  const res = await fetch(GAS_WEB_APP_URL, {
-    method: 'POST',
-    // 改成 text/plain 避免瀏覽器發 OPTIONS 預檢，Apps Script 仍能解析 JSON
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await res.text();
-  console.log('POST result', res.status, text);
-
-  let json = null;
-  try { json = JSON.parse(text); } catch(e){}
-
-  if (!res.ok) {
-    showResult('送出失敗，伺服器回應錯誤。請查看 Console 與 Network。', 'error');
-    return;
-  }
-
-  if (json && json.status === 'success') {
-    showResult('訂單已送出，系統訂單代號: ' + payload.systemOrderCode, 'success');
-  } else {
-    showResult('伺服器回應: ' + (json && json.message ? json.message : text), 'success');
-  }
-
-  // 清空欄位
-  orderItems.forEach(it => {
-    const q = document.getElementById('qty_' + it.code);
-    if (q) q.value = 0;
-  });
-  document.getElementById('orderCodeInput').value = '';
-  recalc();
-
-} catch (err) {
-  console.error('Fetch error', err);
-  showResult('送出失敗，請檢查網路或 Apps Script 權限設定。', 'error');
-}
-
-
-    function showResult(msg, type) {
-      const el = document.getElementById('result');
-      el.textContent = msg;
-      el.className = type === 'success' ? 'success' : (type === 'error' ? 'error' : '');
-    }
-  </script>
-</body>
-</html>
+        items: orderItems
