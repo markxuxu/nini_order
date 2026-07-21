@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NINI Menu 2026 – 線上點餐(需輸入代號)</title>
+  <title>NINI Menu 2026 – 線上點餐 (需輸入代號)</title>
   <style>
     body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Arial;background:#f6f7fb;margin:0;padding:20px;}
     .wrap{max-width:1100px;margin:0 auto;background:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
@@ -22,8 +22,6 @@
     input[type="text"]{padding:8px;border-radius:6px;border:1px solid #ddd;width:220px}
     select{padding:6px;border-radius:6px;border:1px solid #ddd}
     .summary{margin-top:16px;padding:12px;background:#fafafa;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
-    .cart-list{margin-top:12px}
-    .cart-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f5f5}
     .total{font-size:18px;font-weight:800}
     .checkout{background:#28a745;padding:10px 14px;border-radius:8px;color:#fff;font-weight:700;border:0;cursor:pointer}
     .note{font-size:13px;color:#666}
@@ -35,11 +33,11 @@
 </head>
 <body>
   <div class="wrap">
-    <h1> NINI Menu 2026 – 線上點餐(需輸入代號)</h1>
+    <h1>膩 NINI Menu 2026 – 線上點餐 (需輸入代號)</h1>
 
     <p class="note">請在送出訂單前輸入代號 (例如 666 或 666#)。代號為必填，系統會在送出前自動正規化為數字加 #。</p>
 
-    <form id="orderForm">
+    <form id="orderForm" onsubmit="return false;">
       <!-- SALAD -->
       <h2>沙拉 Salad</h2>
 
@@ -144,7 +142,100 @@
         </div>
       </div>
 
-      <!-- 其餘披薩略，請依樣式新增 PZ03..PZ07 -->
+      <div class="item" data-id="PZ03" data-price-large="420" data-price-small="220">
+        <div class="meta">
+          <div class="name">PZ03 夏威夷鮮蝦披薩</div>
+          <div class="desc">蝦仁、鳳梨、洋菇、pizza紅醬</div>
+        </div>
+        <div class="controls">
+          <select id="size_PZ03" onchange="recalc()">
+            <option value="large">large - NT$420</option>
+            <option value="small">small - NT$220</option>
+          </select>
+          <div class="price" id="price_PZ03">NT$420</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('PZ03', -1)">-</button>
+            <input type="number" id="qty_PZ03" name="qty_PZ03" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('PZ03', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="PZ04" data-price-large="420" data-price-small="220">
+        <div class="meta">
+          <div class="name">PZ04 起士鮮蝦披薩</div>
+          <div class="desc">蝦仁、煙燻起士、馬茲瑞拉起士</div>
+        </div>
+        <div class="controls">
+          <select id="size_PZ04" onchange="recalc()">
+            <option value="large">large - NT$420</option>
+            <option value="small">small - NT$220</option>
+          </select>
+          <div class="price" id="price_PZ04">NT$420</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('PZ04', -1)">-</button>
+            <input type="number" id="qty_PZ04" name="qty_PZ04" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('PZ04', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="PZ05" data-price-large="450" data-price-small="230">
+        <div class="meta">
+          <div class="name">PZ05 雪花牛蕃茄披薩</div>
+          <div class="desc">雪花牛肉片、小蕃茄、馬茲瑞拉起士</div>
+        </div>
+        <div class="controls">
+          <select id="size_PZ05" onchange="recalc()">
+            <option value="large">large - NT$450</option>
+            <option value="small">small - NT$230</option>
+          </select>
+          <div class="price" id="price_PZ05">NT$450</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('PZ05', -1)">-</button>
+            <input type="number" id="qty_PZ05" name="qty_PZ05" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('PZ05', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="PZ06" data-price-large="450" data-price-small="230">
+        <div class="meta">
+          <div class="name">PZ06 明太子透抽披薩</div>
+          <div class="desc">透抽、蘆筍、柴魚片、小蕃茄、明太子醬</div>
+        </div>
+        <div class="controls">
+          <select id="size_PZ06" onchange="recalc()">
+            <option value="large">large - NT$450</option>
+            <option value="small">small - NT$230</option>
+          </select>
+          <div class="price" id="price_PZ06">NT$450</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('PZ06', -1)">-</button>
+            <input type="number" id="qty_PZ06" name="qty_PZ06" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('PZ06', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="PZ07" data-price-large="450" data-price-small="230">
+        <div class="meta">
+          <div class="name">PZ07 蕃茄海鮮披薩</div>
+          <div class="desc">透抽、蝦仁、鯷魚、黑橄欖、蕃茄紅醬</div>
+        </div>
+        <div class="controls">
+          <select id="size_PZ07" onchange="recalc()">
+            <option value="large">large - NT$450</option>
+            <option value="small">small - NT$230</option>
+          </select>
+          <div class="price" id="price_PZ07">NT$450</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('PZ07', -1)">-</button>
+            <input type="number" id="qty_PZ07" name="qty_PZ07" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('PZ07', 1)">+</button>
+          </div>
+        </div>
+      </div>
 
       <!-- PASTA -->
       <h2>義大利麵 Pasta</h2>
@@ -179,6 +270,21 @@
         </div>
       </div>
 
+      <div class="item" data-id="PA03" data-price="385">
+        <div class="meta">
+          <div class="name">PA03 白酒蛤蜊扁麵 – NT$385</div>
+          <div class="desc">蛤蜊、辣椒、白酒、小農初榨橄欖油</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$385</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('PA03', -1)">-</button>
+            <input type="number" id="qty_PA03" name="qty_PA03" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('PA03', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
       <!-- RISOTTO -->
       <h2>燉飯 Risotto</h2>
 
@@ -197,6 +303,36 @@
         </div>
       </div>
 
+      <div class="item" data-id="RI02" data-price="395">
+        <div class="meta">
+          <div class="name">RI02 燻鮭魚奶油燉飯 – NT$395</div>
+          <div class="desc">鮮魚、洋菇、法式頂級鮮奶油</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$395</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('RI02', -1)">-</button>
+            <input type="number" id="qty_RI02" name="qty_RI02" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('RI02', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="RI03" data-price="450">
+        <div class="meta">
+          <div class="name">RI03 野菇蟹肉燉飯 – NT$450</div>
+          <div class="desc">特選蟹腿肉、香菇、洋菇、洋蔥</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$450</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('RI03', -1)">-</button>
+            <input type="number" id="qty_RI03" name="qty_RI03" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('RI03', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
       <!-- MAIN -->
       <h2>主菜 Main Course</h2>
 
@@ -211,6 +347,81 @@
             <button type="button" class="ghost" onclick="changeQty('MC01', -1)">-</button>
             <input type="number" id="qty_MC01" name="qty_MC01" value="0" min="0" onchange="recalc()">
             <button type="button" onclick="changeQty('MC01', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="MC02" data-price="490">
+        <div class="meta">
+          <div class="name">MC02 美國首選板腱牛排 – NT$490</div>
+          <div class="desc">US Choice Tendon Steak</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$490</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('MC02', -1)">-</button>
+            <input type="number" id="qty_MC02" name="qty_MC02" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('MC02', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="MC03" data-price="520">
+        <div class="meta">
+          <div class="name">MC03 地中海風什錦海鮮 – NT$520</div>
+          <div class="desc">白蝦、鮮魷、淡菜、蛤蜊、透抽、貝肉</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$520</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('MC03', -1)">-</button>
+            <input type="number" id="qty_MC03" name="qty_MC03" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('MC03', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="MC04" data-price="520">
+        <div class="meta">
+          <div class="name">MC04 義式香煎鱸魚 – NT$520</div>
+          <div class="desc">鱸魚、義式熱配菜</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$520</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('MC04', -1)">-</button>
+            <input type="number" id="qty_MC04" name="qty_MC04" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('MC04', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="MC05" data-price="680">
+        <div class="meta">
+          <div class="name">MC05 招牌辣烤肋排 – NT$680</div>
+          <div class="desc">煙燻辣肋排、熱配菜</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$680</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('MC05', -1)">-</button>
+            <input type="number" id="qty_MC05" name="qty_MC05" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('MC05', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item" data-id="MC06" data-price="680">
+        <div class="meta">
+          <div class="name">MC06 脆皮豬腳 – NT$680</div>
+          <div class="desc">德國豬腳、德式酸菜</div>
+        </div>
+        <div class="controls">
+          <div class="price">NT$680</div>
+          <div class="qty">
+            <button type="button" class="ghost" onclick="changeQty('MC06', -1)">-</button>
+            <input type="number" id="qty_MC06" name="qty_MC06" value="0" min="0" onchange="recalc()">
+            <button type="button" onclick="changeQty('MC06', 1)">+</button>
           </div>
         </div>
       </div>
@@ -236,7 +447,6 @@
         </div>
       </div>
 
-      <!-- Hidden system order id -->
       <input type="hidden" id="orderCode" name="orderCode" value="">
     </form>
 
@@ -248,7 +458,7 @@
   </div>
 
   <script>
-    // 設定為你提供的 Web App URL 與 Sheet ID
+    // 請改成你的 Web App URL 與 Sheet ID
     const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby23W7_z2PBnDJ2p7jW9Advh5RqZmWtnl1kqqif9wEohiWbJ-LXvCZ30EBWj2DTTRg/exec';
     const SHEET_ID = '1DgEfKOK7FbA3r4_wCwDAtetOoR619nIU9eyHSP5UkKY';
 
@@ -296,12 +506,9 @@
         if (priceLabel) priceLabel.textContent = 'NT$' + el.getAttribute('data-price-large');
       });
       recalc();
-
-      // 綁定送出按鈕
       document.getElementById('submitBtn').addEventListener('click', submitOrder);
     });
 
-    // 驗證代號並正規化: 接受 "666" 或 "666#", 最終送出 "666#"
     function validateUserCode(code) {
       if (!code) return { ok: false, msg: '代號為必填。' };
       const trimmed = code.trim();
@@ -315,7 +522,6 @@
     function submitOrder(e) {
       e && e.preventDefault && e.preventDefault();
 
-      // 驗證並正規化使用者代號
       const userCodeInput = document.getElementById('orderCodeInput');
       const codeValidation = validateUserCode(userCodeInput.value);
       if (!codeValidation.ok) {
@@ -323,9 +529,8 @@
         userCodeInput.focus();
         return;
       }
-      const userCode = codeValidation.value; // e.g. "666#"
+      const userCode = codeValidation.value;
 
-      // 建立訂單項目
       const items = document.querySelectorAll('[data-id]');
       const orderItems = [];
       let total = 0;
@@ -355,7 +560,6 @@
         return;
       }
 
-      // 產生系統訂單代號
       const now = new Date();
       const pad = n => String(n).padStart(2, '0');
       const datePart = now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
@@ -385,11 +589,9 @@
         if (res && res.status === 'success') {
           showResult('訂單已送出，系統訂單代號: ' + systemOrderCode + '；您輸入的代號: ' + userCode, 'success');
         } else {
-          // 若後端回傳非 success，顯示訊息
           const msg = (res && res.message) ? res.message : '送出失敗，請檢查 Apps Script 或網路連線。';
           showResult(msg, 'error');
         }
-        // 送出成功後清空數量與代號欄位
         orderItems.forEach(it => {
           const q = document.getElementById('qty_' + it.code);
           if (q) q.value = 0;
